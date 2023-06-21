@@ -2,6 +2,10 @@
 const canvas = document.getElementById('game-canvas');
 const context = canvas.getContext('2d');
 
+// Set canvas dimensions to match the window size
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
 // Define the initial variables
 let birdX = 50;
 let birdY = canvas.height / 2;
@@ -76,6 +80,9 @@ document.addEventListener('keydown', function (event) {
 
 // Game over function
 function gameOver() {
+  // Clear the canvas
+  context.clearRect(0, 0, canvas.width, canvas.height);
+
   // Stop the game loop
   cancelAnimationFrame(gameLoop);
 
