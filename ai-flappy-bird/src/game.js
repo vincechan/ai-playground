@@ -15,13 +15,13 @@ let pipes = [];
 function gameLoop() {
   // Clear the canvas
   context.clearRect(0, 0, canvas.width, canvas.height);
-  
+
   // Update and render the bird
   velocity += gravity;
   birdY += velocity;
   context.fillStyle = '#FF0000';
   context.fillRect(birdX, birdY, 40, 40);
-  
+
   // Update and render the pipes
   if (frames % pipeFrequency === 0) {
     pipes.push({
@@ -29,25 +29,25 @@ function gameLoop() {
       y: Math.floor(Math.random() * canvas.height) - pipeGap
     });
   }
-  
+
   for (let i = 0; i < pipes.length; i++) {
     let pipe = pipes[i];
     pipe.x -= 5;
-    
+
     if (pipe.x + 100 === 0) {
       pipes.shift();
     }
-    
+
     context.fillStyle = '#008000';
     context.fillRect(pipe.x, 0, 100, pipe.y);
     context.fillRect(pipe.x, pipe.y + pipeGap, 100, canvas.height - (pipe.y + pipeGap));
   }
-  
+
   // Check for collision
   if (birdY + 40 >= canvas.height || birdY <= 0) {
     gameOver();
   }
-  
+
   for (let i = 0; i < pipes.length; i++) {
     let pipe = pipes[i];
     if (
@@ -57,7 +57,7 @@ function gameLoop() {
       gameOver();
     }
   }
-  
+
   // Increment frames and call the game loop again
   frames++;
   requestAnimationFrame(gameLoop);
@@ -68,21 +68,20 @@ let frames = 0;
 gameLoop();
 
 // Handle user input
-document.addEventListener('keydown', function(event) {
-    if (event.keyCode === 32) {
-      velocity = -10;
-    }
-  });
-  
-  // Game over function
-  function gameOver() {
-    // Stop the game loop
-    cancelAnimationFrame(gameLoop);
-    
-    // Show game over message
-    alert('Game Over!');
-    
-    // Reload the page to restart the game
-    location.reload();
+document.addEventListener('keydown', function (event) {
+  if (event.keyCode === 32) {
+    velocity = -10;
   }
-  
+});
+
+// Game over function
+function gameOver() {
+  // Stop the game loop
+  cancelAnimationFrame(gameLoop);
+
+  // Show game over message
+  alert('Game Over!');
+
+  // Reload the page to restart the game
+  location.reload();
+}
