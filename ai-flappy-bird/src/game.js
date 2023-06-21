@@ -16,7 +16,13 @@ let pipeFrequency = 150;
 let pipes = [];
 
 // Set up the game loop
+let isGameOver = false; // Add a flag to track game over state
 function gameLoop() {
+  // Check for game over state
+  if (isGameOver) {
+    return; // Exit the game loop if game over
+  }
+
   // Clear the canvas
   context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -80,8 +86,8 @@ document.addEventListener('keydown', function (event) {
 
 // Game over function
 function gameOver() {
-  // Clear the canvas
-  context.clearRect(0, 0, canvas.width, canvas.height);
+  // Set the game over flag
+  isGameOver = true;
 
   // Stop the game loop
   cancelAnimationFrame(gameLoop);
