@@ -9,7 +9,7 @@ canvas.height = window.innerHeight;
 // Define the initial variables
 let birdX = 50;
 let birdY = canvas.height / 2;
-let gravity = 1;
+let gravity = .5;
 let velocity = 0;
 let pipeGap = 100;
 let pipeFrequency = 150;
