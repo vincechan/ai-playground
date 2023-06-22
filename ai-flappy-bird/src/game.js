@@ -6,13 +6,17 @@ const context = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+// Custom Settings to tune the game
+const BIRD_SIZE = 50;
+const PIPE_GAP = 200;
+const PIPE_FREQUENCY = 200;
+const GRAVITY = .5; // How much player move down on each frame
+const MOVEMENT = 10; // How much player move up when spacebar is pressed
+
 // Define the initial variables
 let birdX = 50;
 let birdY = canvas.height / 2;
-let gravity = .5;
 let velocity = 0;
-let pipeGap = 100;
-let pipeFrequency = 150;
 let pipes = [];
 
 // Set up the game loop
@@ -27,20 +31,20 @@ function gameLoop() {
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   // Update and render the bird
-  velocity += gravity;
+  velocity += GRAVITY;
   birdY += velocity;
   context.fillStyle = '#FF0000';
 
   // Render the bird image
   const birdImage = new Image();
   birdImage.src = 'assets/player.png';
-  context.drawImage(birdImage, birdX, birdY, 40, 40);
+  context.drawImage(birdImage, birdX, birdY, BIRD_SIZE, BIRD_SIZE);
 
   // Update and render the pipes
-  if (frames % pipeFrequency === 0) {
+  if (frames % PIPE_FREQUENCY === 0) {
     pipes.push({
       x: canvas.width,
-      y: Math.floor(Math.random() * canvas.height) - pipeGap
+      y: Math.floor(Math.random() * canvas.height) - PIPE_GAP
     });
   }
 
@@ -56,19 +60,19 @@ function gameLoop() {
     const pipeImage = new Image();
     pipeImage.src = 'assets/obstacle.png';
     context.drawImage(pipeImage, pipe.x, 0, 100, pipe.y);
-    context.drawImage(pipeImage, pipe.x, pipe.y + pipeGap, 100, canvas.height - (pipe.y + pipeGap));    
+    context.drawImage(pipeImage, pipe.x, pipe.y + PIPE_GAP, 100, canvas.height - (pipe.y + PIPE_GAP));
   }
 
   // Check for collision
-  if (birdY + 40 >= canvas.height || birdY <= 0) {
+  if (birdY + BIRD_SIZE >= canvas.height || birdY <= 0) {
     gameOver();
   }
 
   for (let i = 0; i < pipes.length; i++) {
     let pipe = pipes[i];
     if (
-      birdX + 40 >= pipe.x && birdX <= pipe.x + 100 &&
-      (birdY <= pipe.y || birdY + 40 >= pipe.y + pipeGap)
+      birdX + BIRD_SIZE >= pipe.x && birdX <= pipe.x + 100 &&
+      (birdY <= pipe.y || birdY + BIRD_SIZE >= pipe.y + PIPE_GAP)
     ) {
       gameOver();
     }
@@ -86,7 +90,7 @@ gameLoop();
 // Handle user input
 document.addEventListener('keydown', function (event) {
   if (event.keyCode === 32) {
-    velocity = -10;
+    velocity = -MOVEMENT;
   }
 });
 
