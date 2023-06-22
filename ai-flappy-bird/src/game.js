@@ -103,8 +103,12 @@ function gameOver() {
   cancelAnimationFrame(gameLoop);
 
   // Show game over message
-  alert('Game Over!');
+  const button = document.getElementById("start-button");
+  button.style.display = "block";
+  document.addEventListener("click", restart);
+}
 
+function restart() {
   // Reload the page to restart the game
   location.reload();
 }
