@@ -30,7 +30,11 @@ function gameLoop() {
   velocity += gravity;
   birdY += velocity;
   context.fillStyle = '#FF0000';
-  context.fillRect(birdX, birdY, 40, 40);
+
+  // Render the bird image
+  const birdImage = new Image();
+  birdImage.src = 'assets/player.png';
+  context.drawImage(birdImage, birdX, birdY, 40, 40);
 
   // Update and render the pipes
   if (frames % pipeFrequency === 0) {
@@ -48,9 +52,11 @@ function gameLoop() {
       pipes.shift();
     }
 
-    context.fillStyle = '#008000';
-    context.fillRect(pipe.x, 0, 100, pipe.y);
-    context.fillRect(pipe.x, pipe.y + pipeGap, 100, canvas.height - (pipe.y + pipeGap));
+    // Render the pipe image
+    const pipeImage = new Image();
+    pipeImage.src = 'assets/obstacle.png';
+    context.drawImage(pipeImage, pipe.x, 0, 100, pipe.y);
+    context.drawImage(pipeImage, pipe.x, pipe.y + pipeGap, 100, canvas.height - (pipe.y + pipeGap));    
   }
 
   // Check for collision
