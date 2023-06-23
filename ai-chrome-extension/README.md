@@ -12,3 +12,8 @@
 2. Enable the "Developer mode" option.
 3. Click on "Load unpacked" and select the folder containing your extension project.
 4. The extension should now be loaded and active in Chrome.
+
+## History
+
+1. GPT: Initial Commit
+2. GPT: Switch from event page to background page because got error `"The 'webRequest' API cannot be used with event pages. Could not load manifest."`. 
