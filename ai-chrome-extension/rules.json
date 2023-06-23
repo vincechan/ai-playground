@@ -1,0 +1,22 @@
+{
+    "id": "my_custom_rules",
+    "rules": [
+        {
+            "id": "modify_headers",
+            "priority": 1,
+            "action": {
+                "type": "modifyHeaders",
+                "responseHeaders": [
+                    {
+                        "header": "Your-Header-Name",
+                        "operation": "add",
+                        "value": "Your-Header-Value"
+                    }
+                ]
+            },
+            "condition": {
+                "urlFilter": "<all_urls>"
+            }
+        }
+    ]
+}

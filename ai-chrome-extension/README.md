@@ -17,3 +17,4 @@
 
 1. GPT: Initial Commit
 2. GPT: Switch from event page to background page because got error `"The 'webRequest' API cannot be used with event pages. Could not load manifest."`. 
+3. GPT: Upgrade to manifest v3.
