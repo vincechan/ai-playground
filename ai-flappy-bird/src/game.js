@@ -44,7 +44,7 @@ function gameLoop() {
   if (frames % PIPE_FREQUENCY === 0) {
     pipes.push({
       x: canvas.width,
-      y: Math.floor(Math.random() * canvas.height) - PIPE_GAP
+      y: Math.max(Math.floor(Math.random() * canvas.height) - PIPE_GAP, PIPE_GAP)
     });
   }
 
