@@ -90,9 +90,17 @@ gameLoop();
 // Handle user input
 document.addEventListener('keydown', function (event) {
   if (event.keyCode === 32) {
-    velocity = -MOVEMENT;
+    move();
   }
 });
+
+element.addEventListener('tap', function() {
+  move();
+});
+
+function move() {
+  velocity = -MOVEMENT;
+}
 
 // Game over function
 function gameOver() {
