@@ -94,10 +94,8 @@ document.addEventListener('keydown', function (event) {
   }
 });
 
-document.addEventListener('tap', function() {
-  if (!gameOver) {
+document.addEventListener('click', function() {
     move();
-  }
 });
 
 function move() {
