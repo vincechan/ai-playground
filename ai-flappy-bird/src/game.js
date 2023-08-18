@@ -8,10 +8,10 @@ canvas.height = window.innerHeight;
 
 // Custom Settings to tune the game
 const BIRD_SIZE = 50;
-const PIPE_GAP = 200;
+const PIPE_GAP = 240;
 const PIPE_FREQUENCY = 200;
-const GRAVITY = .5; // How much player move down on each frame
-const MOVEMENT = 10; // How much player move up when spacebar is pressed
+const GRAVITY = .3; // How much player move down on each frame
+const MOVEMENT = 8; // How much player move up when spacebar is pressed
 
 // Define the initial variables
 let birdX = 50;
